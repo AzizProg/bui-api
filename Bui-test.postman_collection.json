@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "605dfa4a-dd6a-4e78-b888-544091c8d119",
+		"name": "Bui-test-postman",
+		"description": "This is the documentation for the Bui-Api api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25083849"
+	},
+	"item": [
+		{
+			"name": "collaborators",
+			"item": [
+				{
+					"name": "create collaborator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\":\"Abdoul\",\n  \"password\":\"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/v1/Collaborators/register"
+					},
+					"response": []
+				},
+				{
+					"name": "get collaborator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\":\"Abdoul\",\n    \"password\":\"12345678\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/v1/Collaborators/login"
+					},
+					"response": []
+				},
+				{
+					"name": "get all customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiQWJkb3VsIiwiaWF0IjoxNzE3NTAxMDMwLCJleHAiOjE3MTc1MDE2MzB9.h-ainteNPXvHbdnyLjRgm2DnVajDSEc2Po8wzi-vkag"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/api/v1/Collaborators/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "get all transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiQWJkb3VsIiwiaWF0IjoxNzE3NTAxMDMwLCJleHAiOjE3MTc1MDE2MzB9.h-ainteNPXvHbdnyLjRgm2DnVajDSEc2Po8wzi-vkag"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/api/v1/Collaborators/transactions"
+					},
+					"response": []
+				},
+				{
+					"name": "get customer by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get transaction by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wallet",
+			"item": [
+				{
+					"name": "transactions",
+					"item": [
+						{
+							"name": "save transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiZG91bCIsImlhdCI6MTcxNzUxODY4MSwiZXhwIjoxNzE3NTE5MjgxfQ.DQBYerlkXeppTGnZZlXP5ByNheGBaz8dU3zLJfpNifs"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"amount\":2000,\n  \"type\":\"DEPOSIT\",\n  \"customer_id\":1,\n \"description\":\"desc\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/api/v1/transactions"
+							},
+							"response": []
+						},
+						{
+							"name": "update transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWJkb3VsIiwidHJhbnNhY3Rpb25zIjpbeyJpZCI6MSwiYW1vdW50IjoyMDAwLCJkZXNjcmlwdGlvbiI6ImRlc2MiLCJ0eXBlIjoiREVQT1NJVCIsImN1c3RvbWVyX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0wNFQxNjozMTozNS41ODJaIn1dLCJpYXQiOjE3MTc1MTg3MTcsImV4cCI6MTcxNzUxOTMxN30.vKKyxiLA-0uIHEI_GLhCg2dSMWVJfLlWzBj1PjLZ1dw"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\":\"available\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/api/v1/transactions/1"
+							},
+							"response": []
+						},
+						{
+							"name": "delete transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoia2FkZXIiLCJ0cmFuc2FjdGlvbnMiOlt7ImlkIjoyLCJhbW91bnQiOjIwMDAsImRlc2NyaXB0aW9uIjoiIiwidHlwZSI6IkRFUE9TSVQiLCJjdXN0b21lcl9pZCI6MSwiY3JlYXRlZF9hdCI6IjIwMjQtMDYtMDRUMTE6MjQ6MDYuOTE3WiJ9LHsiaWQiOjEsImFtb3VudCI6MTAwMCwiZGVzY3JpcHRpb24iOiIxMjM0NTY3OCIsInR5cGUiOiJUUkFOU0ZFUiIsImN1c3RvbWVyX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0wNFQxMToyMzo0NC44NDNaIn1dLCJpYXQiOjE3MTc1MDA5MTcsImV4cCI6MTcxNzUwMTUxN30.2X7pPEHFaZX-_a-ySn-vJYWVfrCUeuhpLoPadbmJydA"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:3000/api/v1/transactions/1"
+							},
+							"response": []
+						},
+						{
+							"name": "get all transactions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWJkb3VsIiwidHJhbnNhY3Rpb25zIjpbeyJpZCI6MSwiYW1vdW50IjoyMDAwLCJkZXNjcmlwdGlvbiI6ImRlc2MiLCJ0eXBlIjoiREVQT1NJVCIsImN1c3RvbWVyX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wNi0wNFQxNjozMTozNS41ODJaIn1dLCJpYXQiOjE3MTc1MTg3MTcsImV4cCI6MTcxNzUxOTMxN30.vKKyxiLA-0uIHEI_GLhCg2dSMWVJfLlWzBj1PjLZ1dw"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/api/v1/transactions"
+							},
+							"response": []
+						},
+						{
+							"name": "get transaction by id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
+					"description": "NB: As far as modifying the transaction is concerned, I felt that only the description should be modifiable, as a customer should not be able to modify information that is too important, such as the price of his transaction."
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\":\"abdoul\",\n  \"password\":\"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/api/v1/customers/signup"
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\":\"abdoul\",\n  \"password\":\"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/api/v1/customers/login"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "To access the resources you will need to insert the token you received when registering or logging in. Only registration and login do not require a token.  \n  \nNB: As far as modifying the transaction is concerned, I felt that only the description should be modifiable, as a customer should not be able to modify information that is too important, such as the price of his transaction."
+		}
+	]
+}

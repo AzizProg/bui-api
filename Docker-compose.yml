@@ -1,0 +1,41 @@
+
+services:
+
+  bui-api:
+    container_name: bui-api
+    env_file:
+      - .env
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+      - "5555:5555" # if you launch prisma studio with 'npx prisma studio' from container shell
+    depends_on:
+      - database
+    networks:
+      - bui-network
+
+
+  database:
+    container_name: database
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data  # Utilisez un volume nommé au lieu d'un chemin relatif
+    networks:
+      - bui-network
+
+
+volumes:
+  postgres:
+    name: buidb
+
+networks:
+  bui-network:
+    name: bui-network
+    driver: bridge
+
