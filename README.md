@@ -1,76 +1,77 @@
+# **API for Buicorporation's take‐home test Software Engineer**
+For French documentation :[https://github.com/AzizProg/bui-api/blob/main/README.fr.md](https://github.com/AzizProg/bui-api/blob/main/README.fr.md) [![Français](https://img.shields.io/badge/lang-Français-blue.svg)](README.fr.md)
+#
 J'ai réalisé trois tâches pour le test technique de Software Engineer de BuiCorporation, (backend, frontend et mobile) dont chacun dans un repository different. Celui ci étant le repo de la tâche Backend.
 
-# Description
-## Ce qui m'a été demandé
-- Implémenter au moins un point de terminaison (/transactions) qui  accepte les requêtes HTTP (POST, GET, PUT et DELETE)
-- Dockeriser le projet en créant deux fichiers ( Dockerfile et docker-compose.yml)
+# What was required
+- Implement at least one endpoint (/transactions) that accepts HTTP requests (POST, GET, PUT, and DELETE).
+- Dockerize the project by creating two files (Dockerfile and docker-compose.yml).
  
-## Outils utilisés
-- le langage TypeScript et le Framework NestJs
-- PostgreSQL comme base de donnée
-- L'ORM Prisma pour faciliter la communication avec la base de donnée
-- Docker pour isoler mes dépendances et faciliter son déploiement
+## Tools used
+- TypeScript and the NestJs Framework
+- PostgreSQL as the database
+- Prisma ORM for database communication
+- Docker for dependency isolation and deployment ease
 
 
-## Ce que j'ai réalisé
-- CRUD (Create , Read, Update et Delete) sur le point de terminaison (/transactions)
-- Essayer d'appliquer l'architecture Domain Driven Design au projet
-- Dockeriser l'application comme demandé
+## What I accomplished
+- CRUD (Create, Read, Update, Delete) on the endpoint (/transactions)
+- Tried to apply Domain Driven Design architecture to the project
+- Dockerized the application as required
 
 ## Bonus
- En plus des de ce qui m'a été demandé , j'ai ajouté certains points afin de montrer ma bonne motivation 🔥 pour le post au sein de l'entreprise.
-- Un point de terminaison pour les utilisateurs du Wallet pour gérer leurs inscription et connexion depuis l'application mobile avec Dart / Flutter
-- Une partie (module) pour les collaborateurs qui pourront surveiller les utilisateurs du Wallet et leurs transactions 
-- Chaque partie de ce projet est divisé en module
-- Utilisation du JWT pour l'authentification des collaborateurs et utilisateurs du wallet
-- Documentation de l'API avec Swagger
-- Une collection Postman disponible pour les tests sur les points de terminaison 
-- Diagramme de séquence des cas d'utilisations
+In addition to the requirements, I added some points to show my strong motivation 🔥 for the position within the company.
 
-# Structure du projet 
-Ce projet est divisé en deux modules :
-- Bui-collaborators
-- Bui-wallet
+- An endpoint for Wallet users to manage their registration and login from the mobile app with Dart/Flutter
+- A module for collaborators to monitor Wallet users and their transactions.
+- Each part of this project is divided into modules.
+- Use of JWT for authentication of collaborators and Wallet users
+- API documentation with Swagger
+- A Postman collection available for endpoint testing
 
-Les deux projets ont la même structure:
+# Project Structure
+This project is divided into two modules:
+
+Bui-collaborators
+Bui-wallet
+Both projects have the same structure:
 ```
-
 ├── Core
 │   ├── Domain
-│   │   ├── Entities/ Représentent les entités du domaine métier (par exemple, BuiWalletTransactionsEntity, BuiWalletCustomersEntity)
+│   │   ├── Entities/ Represent domain business entities (for example, BuiWalletTransactionsEntity, BuiWalletCustomersEntity)
 │   │   │
-│   │   └── Ports/ Définit les interfaces d'entrée et de sortie du domaine (par exemple: ITransactionRepoSitory)
+│   │   └── Ports/ Defines the domain's input and output interfaces (for example: ITransactionRepository)
 │   │
 │   └── Application
-│       ├── Use Cases/ Orchestre les cas d'utilisation du domaine (par exemple, CreateTransactionUseCase, UpdateTransactionUseCase)
+│       ├── Use Cases/ Orchestrates the domain use cases (for example, CreateTransactionUseCase, UpdateTransactionUseCase)
 │ 
 ├── Infrastructure
-│   ├── Database: Définit les interfaces  d'accès aux donnée (par exemple: IWalletDatabase)
+│   ├── Database: Defines data access interfaces (for example: IWalletDatabase)
 │   │    │
-│   │    └── Prisma/  Implémente les interfaces défini (par exemple: WalletPrismaService)
+│   │    └── Prisma/ Implements the defined interfaces (for example: WalletPrismaService)
 │   │
-│   └── Adapters: Adaptent les ports pour répondre à la demande(par exemple: TransactionRepositoryImpl , 
-│                 CustomerRepositoryImpl)
+│   └── Adapters: Adapts ports to meet demand (for example: TransactionRepositoryImpl, CustomerRepositoryImpl)
 │
 ├── Interface
-│   ├── controllers/ Intercepte les requêtes Http venant de l'exterieur  (par exemple: TransactionController, CustomerController)
+│   ├── controllers/ Intercepts HTTP requests from the outside (for example: TransactionController, CustomerController)
 │   │
-│   └── dto/ Assure la fiabilité des données reçus et de leurs transfert  (par exemple: CreateTransactionDto , CreateCustomerDto)
+│   └── dto/ Ensures reliability of received data and its transfer (for example: CreateTransactionDto, CreateCustomerDto)
 │
 └── Shared
-    └── Exceptions: Définit les exceptions personnalisées (par exemple: DatabaseException, AuthenticationException)
+    └── Exceptions: Defines custom exceptions (for example: DatabaseException, AuthenticationException)
         │
-        └── prisma-client-exception/ gère la majorité des exceptions avec prisma
+        └── prisma-client-exception/ Manages most exceptions with Prisma
+
 ```
 
 # Installation
-### Etape 1:
-- Récupérer ce repository
-- Installer docker sur votre ordinateur
-- Ouvrir le projet sur un IDE
+### Step 1:
+- Get (git clone or just download) this repository.
+- Install Docker on your computer.
+- Open the project in an IDE.
 
-### Etape 2:
-Créer un fichier **.env** à la racine du projet et définissez les variables d'environnements ci-dessous.
+### Step 2:
+Create a .env file at the root of the project and define the environment variables below.
 ```
 DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?schema=public
 POSTGRES_USER=postgres 
@@ -79,30 +80,47 @@ POSTGRES_DB=buidb
 JWT_SECRET="test"
 JWT_EXPIRE="10m"
 ```
-_**NB**: Assurez vous d'avoir créer le fichier **.env** et defini les variables d'environnements sinon le processus de demarrage de l'application ne fonctionnera pas._
+_**NB**: Make sure you have created the **.env** file and defined the environment variables or simply use the one I intentionally left at the root of the project containing the already defined variables, otherwise the application startup process will not work._
 
-# Utilisation
-### Etape 1:Lancez le projet
-Dans le terminal de votre IDE, executez la commande ci-dessous pour lancer le projet avec docker:
+# Usage
+### Step 1: Launch the project
+In your IDE terminal, run the command below to launch the project with Docker:
 ```
 docker-compose up --build
 ```
-### Etape 2:Acceder à la documentation de l'api (Facultative)
-Aller dans votre navigateur et tapez : **localhost:3000/api-docs**
+### Step 2: Access the API documentation (Optional)
+Open your browser and type: localhost:3001/api-docs
 
-NB: Ceci marche uniquement si vous n'avez pas changé ou que le port ne soit pas occupé par un autre service
+NB: This only works if you have not changed or the port is not occupied by another service.
 
-Vous pouvez trouvez également la collection pour les tests d'api sur Postman a la racine du projet au nom: Bui-Wallet-api-collection
+You can also find the collection for API testing on Postman at the root of the project under the name:  [Bui-test.postman_collection.json](https://github.com/AzizProg/bui-api/blob/main/Bui-test.postman_collection.json)
 
-### Etape 3:Visualiser la base de donnée avec Prisma Studio(Facultative)
-Vous pouvez voir les modifications et autres dans la base de donnée en exécutant Prisma studio dans la console de votre IDE :
+(![Capture d'écran 2024-06-11 151331](https://github.com/AzizProg/bui-api/assets/112016586/3150b873-c581-41e4-8fad-46a4fe407717))
+To enter the JWT token::
+(![Capture d'écran 2024-06-11 151502](https://github.com/AzizProg/bui-api/assets/112016586/58ac0955-58a4-4cd3-acdb-e9df2d500143))
+(![Capture d'écran 2024-06-11 151355](https://github.com/AzizProg/bui-api/assets/112016586/33468b3c-f10d-43de-88ac-33aa1bd3dbb8))
+Validation schemas:
+( ![Capture d'écran 2024-06-11 151442](https://github.com/AzizProg/bui-api/assets/112016586/e3e9e6b2-3cd4-447f-bcc2-7508be7b3434))
 
-Obtenez d'abord le container-id de bui_test_api:
+### Step 3: View the database with Prisma Studio (Optional)
+You can see changes and others in the database by running Prisma Studio in your IDE console:
+
+First, get the container-id of bui_test_api:
 ```
 docker ps
 ```
-Ensuite :
+Then: :
 ```
-docker exec -t container-id npx prisma
+docker exec -t container-id npx prisma studio
 ```
+Example: if the container id is 12345678
+```
+docker exec -t 12345678 npx prisma studio
+```
+
+# Challenges
+
+
+## Docker
+Not being accustomed to Docker, I had to update myself and during the project realization, I faced an issue of communication between my containers (bui-api and bui-client). Being two different projects that are not in the same container, I had difficulty understanding why they were not communicating normally at first, and in the end, I realized that I was still using "localhost" which is normally no longer useful in this case since my containers are each in a virtual environment and at each construction of my containers, a random address is issued by Docker which prevents me from relying on their IPv4 addresses. So I dug to solve the problem and in the end, I had to create a Docker.
 
