@@ -1,5 +1,6 @@
 # **Documentation du projet Api pour le test d'ingénieur logiciel chez BUICOROPRATION**
-
+For this documentation in English:[![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
+#
 J'ai réalisé trois tâches pour le test technique de Software Engineer de BuiCorporation (backend, frontend et mobile), chacune dans un repository différent. Celui-ci est le repo de la tâche Backend.
 
 # Description
