@@ -1,7 +1,7 @@
 # **API for Buicorporation's take‐home test Software Engineer**
 For this documentation in French: [![Français](https://img.shields.io/badge/lang-Français-blue.svg)](README.fr.md)
 #
-I have completed three tasks for the BuiCorporation Software Engineer technical test (backend, frontend, and mobile), each in a different repository. This one is the repository for the Backend task?.
+I have completed three tasks for the BuiCorporation Software Engineer technical test (backend, frontend, and mobile), each in a different repository. This one is the repository for the Backend task.
 
 
 # What was required
