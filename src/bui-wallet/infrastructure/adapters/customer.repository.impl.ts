@@ -50,11 +50,14 @@ export class CustomerRepositoryImpl implements ICustomerRepository {
     const salt = await bcrypt.genSalt();
     const passwordHashed = await bcrypt.hash(customer.password, salt);
 
-    await this.walletPrismaService.createCustomer(
+   const customerCreated= await this.walletPrismaService.createCustomer(
       customer.username,
       passwordHashed,
     );
-    const payload = { sub: customer.id, username: customer.username };
+    //delete customer before send it on client : mobile 
+    delete customerCreated.password;
+    
+    const payload = { sub: customer.id, customer:customerCreated };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

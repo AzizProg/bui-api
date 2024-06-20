@@ -2,6 +2,7 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { IWalletDatabase } from '../wallet.database';
 import { BuiWalletTransactionsEntity } from 'src/bui-wallet/core/domain/entities/bui-wallet-transactions.entity';
+import { BuiWalletCustomersEntity } from 'src/bui-wallet/core/domain/entities/bui-wallet-customers.entity';
 
 @Injectable()
 export class WalletPrismaService
@@ -11,12 +12,14 @@ export class WalletPrismaService
   constructor() {
     super();
   }
-  async createCustomer(username: string, password: string): Promise<any> {
+  async createCustomer(username: string, password: string): Promise<BuiWalletCustomersEntity> {
     return await this.buiWalletCustomers.create({
       data: {
         username: username,
         password: password,
+ 
       },
+      
     });
   }
   async getCustomer(username): Promise<any> {

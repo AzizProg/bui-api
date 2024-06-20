@@ -12,7 +12,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaClientExceptionFilter } from './shared/exceptions/prisma-client-exception/prisma-client-exception.filter';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
-//cors for my client app
+//cors for my client apps
 const corsOptions: CorsOptions = {
   origin: '*',
   methods: 'GET,POST,PUT,DELETE',
