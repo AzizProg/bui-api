@@ -40,10 +40,10 @@ export class WalletPrismaService
       },
     })) as BuiWalletTransactionsEntity;
   }
-  async findTransactionById(transaction_id): Promise<any> {
-    return (await this.buiWalletTransactions.findMany({
-      where: { customer_id: Number(transaction_id) },
-    })) as BuiWalletTransactionsEntity[];
+  async findTransactionById(transaction_id): Promise<BuiWalletTransactionsEntity> {
+    return (await this.buiWalletTransactions.findUnique({
+      where: { id: transaction_id },
+    })) as BuiWalletTransactionsEntity;
   }
   async findCustomerTransactions(token_id: string): Promise<any> {
     return await this.buiWalletTransactions.findMany({

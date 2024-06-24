@@ -74,8 +74,7 @@ export class TransactionController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   async getOneTransactionById(
-    @Param("id") id: number,
-  ): Promise<Partial<BuiWalletTransactionsEntity>> {
+    @Param('id', ParseIntPipe) id: number): Promise<Partial<BuiWalletTransactionsEntity>> {
     return await this.findTransactionByIdUseCase.execute(id);
   }
 
