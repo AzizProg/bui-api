@@ -32,10 +32,10 @@ export class CustomerRepositoryImpl implements ICustomerRepository {
       if (!isPasswordValid) {
         throw new AuthenticationException('Password incorrect',HttpStatus.BAD_REQUEST);
       }
+      delete customer.password;
       const payload = {
         sub: customer.id,
-        username: customer.username,
-        transactions: customer.transactions,
+        customer
       };
       return {
         access_token: await this.jwtService.signAsync(payload),
