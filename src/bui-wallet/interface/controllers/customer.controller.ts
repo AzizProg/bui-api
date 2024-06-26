@@ -5,7 +5,7 @@ import { BuiWalletCustomersEntity } from 'src/bui-wallet/core/domain/entities/bu
 import { CreateCustomerUseCase } from 'src/bui-wallet/core/application/usecases/create-customer.usecase';
 import { GetCustomerUseCase } from 'src/bui-wallet/core/application/usecases/get-customer.usecase';
 import { GetCustomerDto } from '../dto/get-customer.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiResponseProperty, ApiTags } from '@nestjs/swagger';
 import { PrismaClientExceptionFilter } from 'src/shared/exceptions/prisma-client-exception/prisma-client-exception.filter';
 
 
@@ -21,6 +21,12 @@ export class CustomerController {
 
   @Post('signup')
   @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse({
+    description:'User has been created'
+  })
+  @ApiConflictResponse({
+    description:'User exist'
+  })
   async signUp(
     @Body() createCustomerDto: CreateCustomerDto,
     
@@ -30,6 +36,16 @@ export class CustomerController {
   
   @Post('login')
   @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({
+    description:'Connection successful'
+  })
+  @ApiNotFoundResponse({
+    description:'User not found'
+  })
+  @ApiBadRequestResponse({
+    description:'Incorrect password'
+  })
+
   async login(
     @Body() getCustomerDto: GetCustomerDto,
   ): Promise<Partial<BuiWalletCustomersEntity>| HttpException> {

@@ -43,7 +43,7 @@ async function bootstrap() {
       type: 'apiKey',
       in: 'header',
       name: 'Authorization',
-      description: 'Enter JWT access token in Bearer format',
+      description: 'Enter JWT access token in Bearer format : Bearer + access_token',
     })
     .build();
 

@@ -45,10 +45,10 @@ export class WalletPrismaService
       where: { id: transaction_id },
     })) as BuiWalletTransactionsEntity;
   }
-  async findCustomerTransactions(token_id: string): Promise<any> {
+  async findCustomerTransactions(token_id: string): Promise<BuiWalletTransactionsEntity[]> {
     return await this.buiWalletTransactions.findMany({
       where: { customer_id: Number(token_id) },
-    });
+    }) as BuiWalletTransactionsEntity[];
   }
   async updateTransaction(
     transaction_id: number,

@@ -9,6 +9,7 @@ export class CreateCustomerDto implements BuiWalletCustomersEntity {
 
   @IsNotEmpty()
   @ApiProperty()
+  @Length(4)
   username: string;
   @IsNotEmpty()
   @ApiProperty()

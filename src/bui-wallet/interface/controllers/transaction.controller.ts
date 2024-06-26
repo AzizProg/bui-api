@@ -15,7 +15,7 @@ import {
   Res,
   UseGuards,
   ParseIntPipe,
-  UseFilters
+  UseFilters,
 } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
 import { CreateTransactionDto } from '../dto/create-transaction.dto';
@@ -26,14 +26,22 @@ import { FindTransactionByIdUseCase } from 'src/bui-wallet/core/application/usec
 import { Token } from 'src/shared/security/token';
 import { CreateTransactionUseCase } from 'src/bui-wallet/core/application/usecases/create-transaction.usecase';
 import { BuiWalletTransactionsEntity } from 'src/bui-wallet/core/domain/entities/bui-wallet-transactions.entity';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { UpdateTransactionUseCase } from 'src/bui-wallet/core/application/usecases/update-transaction.usecase';
 import { DeleteTransactionUseCase } from 'src/bui-wallet/core/application/usecases/delete-transaction.usecase';
 import { UpdateTransactionDto } from '../dto/update-transaction.dto';
 import { PrismaClientExceptionFilter } from 'src/shared/exceptions/prisma-client-exception/prisma-client-exception.filter';
 
-
 @ApiTags('Transactions')
+@ApiUnauthorizedResponse({
+  description: 'Access token expire or not available',
+})
 @Controller('api/v1/transactions/')
 @ApiBearerAuth()
 @UseGuards(JwtGuard)
@@ -43,8 +51,8 @@ export class TransactionController {
     private findCustomerTransactionsUseCase: FindCustomerTransactionsUseCase,
     private findTransactionByIdUseCase: FindTransactionByIdUseCase,
     private createTransactionUseCase: CreateTransactionUseCase,
-    private updateTransactionUseCase:UpdateTransactionUseCase,
-    private deleteTransactionUseCase:DeleteTransactionUseCase,
+    private updateTransactionUseCase: UpdateTransactionUseCase,
+    private deleteTransactionUseCase: DeleteTransactionUseCase,
     private token: Token,
   ) {}
 
@@ -53,8 +61,7 @@ export class TransactionController {
   async saveTransaction(
     @Body() createTransactionDto: CreateTransactionDto,
   ): Promise<BuiWalletTransactionsEntity> {
-      return await this.createTransactionUseCase.execute(createTransactionDto);
-      
+    return await this.createTransactionUseCase.execute(createTransactionDto);
   }
 
   @Get()
@@ -70,25 +77,45 @@ export class TransactionController {
       return new HttpException(error, HttpStatus.UNAUTHORIZED);
     }
   }
-
   @Get(':id')
   @HttpCode(HttpStatus.OK)
+  @ApiOkResponse()
+  @ApiNotFoundResponse({
+    description: 'Transaction not found',
+  })
   async getOneTransactionById(
-    @Param('id', ParseIntPipe) id: number): Promise<Partial<BuiWalletTransactionsEntity>> {
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Partial<BuiWalletTransactionsEntity>> {
     return await this.findTransactionByIdUseCase.execute(id);
   }
 
-  //customers can only update transaction description  
   @Put(':id')
   @HttpCode(HttpStatus.OK)
-  async updateTransaction(@Param('id', ParseIntPipe) id: number,@Body() updateTransactionDto:UpdateTransactionDto):Promise<BuiWalletTransactionsEntity>{
-    return await this.updateTransactionUseCase.execute(id,updateTransactionDto.description);
-  
+  @ApiOkResponse()
+  @ApiNotFoundResponse({
+    description: 'Transaction not found',
+  })
+  @ApiOkResponse({ description: 'Transaction updated' })
+  @ApiNotFoundResponse({
+    description: 'Transaction not found',
+  })
+  async updateTransaction(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateTransactionDto: UpdateTransactionDto,
+  ): Promise<BuiWalletTransactionsEntity> {
+    return await this.updateTransactionUseCase.execute(
+      id,
+      updateTransactionDto.description,
+    );
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  async deleteTransaction(@Param("id",ParseIntPipe) id:number){
+  @ApiOkResponse({ description: 'Transaction deleted' })
+  @ApiNotFoundResponse({
+    description: 'Transaction not found',
+  })
+  async deleteTransaction(@Param('id', ParseIntPipe) id: number) {
     return await this.deleteTransactionUseCase.execute(id);
   }
 }
