@@ -4,7 +4,7 @@ For this documentation in English:[![English](https://img.shields.io/badge/lang-
 J'ai réalisé trois tâches pour le test technique de Software Engineer de BuiCorporation (backend, frontend et mobile), chacune dans un repository différent. Celui-ci est le repo de la tâche Backend.
 Pour consulter les autres parties::
 * [Frontend avec Next Js](https://github.com/AzizProg/bui-client)
-* [Mobile avec Flutter](https://github.com/AzizProg/bui-api)
+* [Mobile avec Flutter](https://github.com/AzizProg/bui-mobile)
 ---
 # Description
 
