@@ -2,7 +2,7 @@
 For this documentation in French: [![Français](https://img.shields.io/badge/lang-Français-blue.svg)](README.fr.md)
 #
 I have completed three tasks for the BuiCorporation Software Engineer technical test (backend, frontend, and mobile), each in a different repository. This one is the repository for the Backend task.
-
+---
 
 # What was required
 - Implement at least one endpoint (/transactions) that accepts HTTP requests (POST, GET, PUT, and DELETE).
@@ -19,7 +19,7 @@ I have completed three tasks for the BuiCorporation Software Engineer technical 
 - CRUD (Create, Read, Update, Delete) on the endpoint (/transactions)
 - Tried to apply Domain Driven Design architecture to the project
 - Dockerized the application as required
-
+---
 ## Bonus
 In addition to the requirements, I added some points to show my strong motivation 🔥 for the position within the company.
 
@@ -29,7 +29,7 @@ In addition to the requirements, I added some points to show my strong motivatio
 - Use of JWT for authentication of collaborators and Wallet users
 - API documentation with Swagger
 - A Postman collection available for endpoint testing
-
+---
 # Project Structure
 This project is divided into two modules:
 
@@ -64,7 +64,7 @@ Both projects have the same structure:
         └── prisma-client-exception/ Manages most exceptions with Prisma
 
 ```
-
+---
 # Installation
 ### Step 1:
 - Get (git clone or just download) this repository.
@@ -82,7 +82,7 @@ JWT_SECRET="test"
 JWT_EXPIRE="10m"
 ```
 _**NB**: Make sure you have created the **.env** file and defined the environment variables or simply use the one I intentionally left at the root of the project containing the already defined variables, otherwise the application startup process will not work._
-
+---
 # Usage
 ### Step 1: Launch the project
 In your IDE terminal, run the command below to launch the project with Docker:
@@ -97,16 +97,18 @@ NB: This only works if you have not changed or the port is not occupied by anoth
 You can also find the collection for API testing on Postman at the root of the project under the name:  [Bui-test.postman_collection.json](https://github.com/AzizProg/bui-api/blob/main/Bui-test.postman_collection.json)
 
 (![Capture d'écran 2024-06-11 151331](https://github.com/AzizProg/bui-api/assets/112016586/3150b873-c581-41e4-8fad-46a4fe407717))
-To enter the JWT token::
+To enter the JWT token:
 (![Capture d'écran 2024-06-11 151502](https://github.com/AzizProg/bui-api/assets/112016586/58ac0955-58a4-4cd3-acdb-e9df2d500143))
 (![Capture d'écran 2024-06-11 151355](https://github.com/AzizProg/bui-api/assets/112016586/33468b3c-f10d-43de-88ac-33aa1bd3dbb8))
 Validation schemas:
 ( ![Capture d'écran 2024-06-11 151442](https://github.com/AzizProg/bui-api/assets/112016586/e3e9e6b2-3cd4-447f-bcc2-7508be7b3434))
 
-### Step 3: View the database with Prisma Studio (Optional)
-You can see changes and others in the database by running Prisma Studio in your IDE console:
+---
+# Prisma Studio: View the database content with Prisma Studio (Optional)
 
-First, get the container-id of bui_test_api:
+## Step 1: Obtain container id
+
+In your IDE terminal:
 ```
 docker ps
 ```
@@ -119,6 +121,30 @@ Example: if the container id is 12345678
 docker exec -t 12345678 npx prisma studio
 ```
 
+## Step 2: Obtain your IPV4 adress
+
+### Windows
+
+```
+ipconfig
+```
+then search ipv4 address line
+
+### MacOs
+For Wi-Fi connection 
+```
+ipconfig getifaddr en0
+```
+For Ethernet connection 
+```
+ipconfig getifaddr en1
+```
+## Step 3: Open Prisma studio
+In your browser , open prisma with your ipv4 adress and default port set in docker-compose file(5555):
+```
+ipv4Adress:5555
+```
+---
 # Challenges
 
 
