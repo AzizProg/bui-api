@@ -2,7 +2,10 @@
 For this documentation in English:[![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 #
 J'ai réalisé trois tâches pour le test technique de Software Engineer de BuiCorporation (backend, frontend et mobile), chacune dans un repository différent. Celui-ci est le repo de la tâche Backend.
-
+Pour consulter les autres parties::
+* [Frontend avec Next Js](https://github.com/AzizProg/bui-client)
+* [Mobile avec Flutter](https://github.com/AzizProg/bui-api)
+---
 # Description
 
 ## Ce qui m'a été demandé
@@ -23,7 +26,7 @@ J'ai réalisé trois tâches pour le test technique de Software Engineer de BuiC
 - CRUD (Create, Read, Update et Delete) sur le point de terminaison (/transactions).
 - Essayer d'appliquer l'architecture Domain Driven Design au projet.
 - Dockeriser l'application comme demandé.
-
+---
 ## Bonus
 En plus de ce qui m'a été demandé, j'ai ajouté certains points afin de montrer ma motivation 🔥 pour le poste au sein de l'entreprise.
 
@@ -33,7 +36,7 @@ En plus de ce qui m'a été demandé, j'ai ajouté certains points afin de montr
 - Utilisation du JWT pour l'authentification des collaborateurs et des utilisateurs du Wallet.
 - Documentation de l'API avec Swagger.
 - Une collection Postman disponible pour les tests sur les points de terminaison.
-
+---
 # Structure du projet
 Ce projet est divisé en deux modules :
 
@@ -68,7 +71,7 @@ Les deux projets ont la même structure :
         └── prisma-client-exception/ Gère la majorité des exceptions avec Prisma
 
 ```
-
+---
 # Installation
 ### Étape 1 :
 - Récupérer ce repository.
@@ -86,7 +89,7 @@ JWT_SECRET="test"
 JWT_EXPIRE="10m"
 ```
 _**NB **: Assurez-vous d'avoir créé le fichier **.env **et défini les variables d'environnement ou simplement d'utiliser celui que j'ai volontairement laissé à la racine du projet contenant les variables déjà définies, sinon le processus de démarrage de l'application ne fonctionnera pas._
-
+---
 # Utilisation
 ### Étape 1 : Lancez le projet
 Dans le terminal de votre IDE, exécutez la commande ci-dessous pour lancer le projet avec Docker :
@@ -107,23 +110,48 @@ Pour saisir le token JWT:
 Les schémas de validation:
 ( ![Capture d'écran 2024-06-11 151442](https://github.com/AzizProg/bui-api/assets/112016586/e3e9e6b2-3cd4-447f-bcc2-7508be7b3434))
 
+---
+# Prisma Studio: Visualisez le contenu de la base de donnée (Optionel)
 
-### Étape 3 : Visualiser la base de données avec Prisma Studio (Facultatif)
-Vous pouvez voir les modifications et autres dans la base de données en exécutant Prisma Studio dans la console de votre IDE :
+## Step 1: Obtenir l'id du container
 
-Obtenez d'abord le container-id de bui_test_api :
+Dans le terminal de votre IDE:
 ```
 docker ps
 ```
-Ensuite :
+En suite: :
 ```
 docker exec -t container-id npx prisma studio
 ```
-Exemple: si l'id du container est 12345678
+Exemple: Si le container id est 12345678
 ```
 docker exec -t 12345678 npx prisma studio
 ```
 
+## Etape 2: Obtenir votre adresse Ipv4
+
+### Windows
+
+```
+ipconfig
+```
+En suite cherchez la ligne Ipv4
+
+### MacOs
+Si vous utilisez une connexion 
+```
+ipconfig getifaddr en0
+```
+Si vous utilisez une connexion Ethernet
+```
+ipconfig getifaddr en1
+```
+## Step 3: Ouvrir prisma studio
+Dans votre navigateur, lancez prisma studio avec votre adresse ipv4 et le port defini par default dans le fichier docker compose(5555):
+```
+ipv4Adress:5555
+```
+---
 # Difficultés rencontrées
 
 
